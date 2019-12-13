@@ -1,0 +1,24 @@
+{
+  "name": "githubtop3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NickBerilov/githubTop3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NickBerilov/githubTop3/issues"
+  },
+  "homepage": "https://github.com/NickBerilov/githubTop3#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "bluebird": "^3.7.2",
+    "lodash": "^4.17.15"
+  }
+}

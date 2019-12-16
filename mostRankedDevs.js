@@ -1,7 +1,7 @@
 const Bluebird = require('bluebird');
 const { sumBy } = require('lodash');
 
-const Top3 = require('./classes/Top3');
+const TopList = require('./classes/TopList');
 const GithubService = require('./services/GithubService');
 const config = require('./config');
 
@@ -12,7 +12,7 @@ const SAFEGUARD = true;
 const city = process.argv[2];
 
 async function query(city) {
-    const top3 = new Top3();
+    const topList = new TopList();
 
     let usersPage = 1;
 
@@ -29,7 +29,7 @@ async function query(city) {
         await Bluebird.map(users, async ({ login: username }) => {
             const totalStars = await fetchTotalStars(username);
 
-            top3.process({
+            topList.process({
                 name: username,
                 stars: totalStars,
             });
@@ -38,7 +38,7 @@ async function query(city) {
         usersPage++;
     }
 
-    console.log(top3.usernames);
+    console.log(topList.usernames);
 }
 
 async function fetchTotalStars(username) {

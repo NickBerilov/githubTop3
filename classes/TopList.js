@@ -1,6 +1,8 @@
 const { remove, minBy } = require('lodash');
 
-module.exports = class Top3 {
+const config = require('../config');
+
+module.exports = class TopList {
     constructor() {
         this.users = [];
     }
@@ -17,7 +19,7 @@ module.exports = class Top3 {
     }
 
     process(newUser) {
-        if (this.users.length < 3) {
+        if (this.users.length < config.topListUserCount) {
             this.users.push(newUser);
         } else if (this.doesUserBelong(newUser)) {
             const userToRemove = minBy(this.users, 'stars');

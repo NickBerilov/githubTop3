@@ -2,5 +2,6 @@
   "apiUrl": "https://api.github.com/search",
   "language": "javascript",
   "authToken": "5b3b8e4fa64d6e9d418bb0c329b8a61a967b08ad",
-  "concurrency": 5
+  "concurrency": 5,
+  "topListUserCount": 3
 }

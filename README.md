@@ -17,7 +17,7 @@ The app has several limitations:
 possibility of missing the users that would otherwise be in the top 3.
 2. Since the number of calls we need to make to retrieve all users and their repositories, the app takes a while to 
 return the result; setting the `SAFEGUARD` variable defined in `mostRankedDevs.js` to `true` causes the app to only 
-check the first 100 users, which somewhat mitigates this issue, but also increases the chance of missing a user with a
+check the first 50 users, which somewhat mitigates this issue, but also increases the chance of missing a user with a
 high amount of total stars. 
 3. The app makes a large number of API calls, which sometimes breaks the API's rate limit and triggers "Abuse detection",
 which we handle by using the `retry-after` header and waiting for the API to become available again.

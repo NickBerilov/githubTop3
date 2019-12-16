@@ -2,6 +2,10 @@ const axios = require('axios');
 
 const config = require('../config');
 
+/**
+ * A wrapper for an API call that makes the call again after the amount of time set
+ * in the `retry-after` header if abuse detection is triggered
+ * */
 async function abuseDetectionHandler(callback) {
     let result;
 
@@ -23,6 +27,12 @@ async function abuseDetectionHandler(callback) {
 }
 
 module.exports = class GithubService {
+    /**
+     * Calls GitHub's search API with the given parameters
+     *
+     * @param type - type of object to search for (e.g. "users" or "repositories")
+     * @param query - search query
+     * */
     static async search(type, query) {
         return abuseDetectionHandler(() => {
             return axios.get(`${config.apiUrl}/${type}?${encodeURI(query)}`, {

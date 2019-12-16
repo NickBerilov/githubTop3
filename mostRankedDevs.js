@@ -9,9 +9,14 @@ const config = require('./config');
 // otherwise the search takes considerably longer
 const SAFEGUARD = true;
 
-const city = process.argv[2];
+const location = process.argv[2];
 
-async function query(city) {
+/**
+ * Constructs a list of users with the highest total stars among their repositories
+ *
+ * @param location - the user's location (e.g. a city), which is taken from the command line args
+ * */
+async function query(location) {
     const topList = new TopList();
 
     let usersPage = 1;
@@ -19,7 +24,7 @@ async function query(city) {
     while (true) {
         const users = await GithubService.search(
             'users',
-            `q=language:${config.language} location:${city} repos:>0&page=${usersPage}&per_page=50`
+            `q=language:${config.language} location:${location} repos:>0&page=${usersPage}&per_page=50`
         );
 
         if (!users || !users.length || (SAFEGUARD && usersPage === 2)) {
@@ -41,6 +46,11 @@ async function query(city) {
     console.log(topList.usernames);
 }
 
+/**
+ * Searches for all of the user's repositories and calculates a sum total of stars
+ *
+ * @param username - user's GitHub login
+ * */
 async function fetchTotalStars(username) {
     let totalStars = 0;
     let reposPage = 1;
@@ -63,4 +73,4 @@ async function fetchTotalStars(username) {
     return totalStars;
 }
 
-query(city);
+query(location);
